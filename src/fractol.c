@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:29 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/11 06:35:12 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/11 06:47:50 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 // void	move_rectangle(void *param)
 // {
 // 	t_frac *frac;
-
+//
 // 	frac = (t_frac *) param;
 // 	if (mlx_is_key_down(frac->window, MLX_KEY_ESCAPE))
 // 		mlx_close_window(frac->window);
@@ -51,18 +51,19 @@
 // 		frac->img->instances[0].x += 5;
 // }
 
-void	init(t_frac *frac)
+void	init(int argc, char *argv[], t_frac *frac)
 {
+	parse_args(argc, argv, frac);
 	frac->scr_w = 1280;
 	frac->scr_h = 720;
 	mandelbrot_init(frac);
 }
 
-int	main()
+int	main(int argc, char *argv[])
 {
 	t_frac	frac;
 
-	init(&frac);
+	init(argc, argv, &frac);
 	frac.window = mlx_init(frac.scr_w, frac.scr_h, "fract-ol", true);
 	if (frac.window == NULL)
 		exit_error(&frac, mlx_strerror(mlx_errno)); // TODO: check if ure able to print msgs upon error exit

@@ -6,7 +6,7 @@
 #    By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 12:09:12 by tunsal            #+#    #+#              #
-#    Updated: 2024/02/11 06:04:36 by tunsal           ###   ########.fr        #
+#    Updated: 2024/02/11 07:17:06 by tunsal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS_DIR		= src/
 SRCS			= $(SRCS_DIR)fractol.c $(SRCS_DIR)example.c
 
 UTILS_DIR		= $(SRCS_DIR)util/
-UTILS_SRCS		= $(UTILS_DIR)exit_error.c
+UTILS_SRCS		= $(UTILS_DIR)exit_error.c $(UTILS_DIR)print_usage.c $(UTILS_DIR)parse_args.c
 
 GFX_DIR			= $(SRCS_DIR)gfx/
 GFX_SRCS		= $(GFX_DIR)color.c
