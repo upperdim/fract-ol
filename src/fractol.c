@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:29 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/11 06:47:50 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/11 07:47:17 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,31 @@ void	init(int argc, char *argv[], t_frac *frac)
 	parse_args(argc, argv, frac);
 	frac->scr_w = 1280;
 	frac->scr_h = 720;
-	mandelbrot_init(frac);
+	frac->window = mlx_init(frac->scr_w, frac->scr_h, "fract-ol", true);
+	if (frac->window == NULL)
+		exit_error(frac, mlx_strerror(mlx_errno)); // TODO: check if ure able to print msgs upon error exit
+	frac->img = mlx_new_image(frac->window, frac->scr_w, frac->scr_h);
+	if (frac->img == NULL)
+		exit_error(frac, mlx_strerror(mlx_errno));
+	if (mlx_image_to_window(frac->window, frac->img, 0, 0) == -1)
+		exit_error(frac, mlx_strerror(mlx_errno));
+}
+
+void	fractal_switch(t_frac *frac)
+{
+	if (frac->type == FRAC_MANDEL)
+	{
+		mandelbrot_init(frac);
+		mlx_loop_hook(frac->window, mandelbrot_draw, frac);
+	}
+	else if (frac->type == FRAC_JULIA)
+	{
+
+	}
+	else if (frac->type == FRAC_BURN)
+	{
+
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -64,16 +88,8 @@ int	main(int argc, char *argv[])
 	t_frac	frac;
 
 	init(argc, argv, &frac);
-	frac.window = mlx_init(frac.scr_w, frac.scr_h, "fract-ol", true);
-	if (frac.window == NULL)
-		exit_error(&frac, mlx_strerror(mlx_errno)); // TODO: check if ure able to print msgs upon error exit
-	frac.img = mlx_new_image(frac.window, frac.scr_w, frac.scr_h);
-	if (frac.img == NULL)
-		exit_error(&frac, mlx_strerror(mlx_errno));
-	if (mlx_image_to_window(frac.window, frac.img, 0, 0) == -1)
-		exit_error(&frac, mlx_strerror(mlx_errno));
+	fractal_switch(&frac);
 	//mlx_loop_hook(frac.window, draw_rectangle, &frac);
-	mlx_loop_hook(frac.window, mandelbrot_draw, &frac);
 	//mlx_loop_hook(frac.window, move_rectangle, &frac);
 	mlx_loop(frac.window);
 	mlx_terminate(frac.window);

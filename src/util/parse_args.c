@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 06:44:26 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/11 07:07:02 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/11 07:43:18 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ static void	extra_param_check(int argc, int max_allowed_arg_count)
 static void	args_handle_mandelbrot(int argc, char *argv[], t_frac *frac)
 {
 	extra_param_check(argc, 2);
-	frac->frac_type = FRAC_MANDEL;
+	frac->type = FRAC_MANDEL;
 }
 
 static void	args_handle_julia(int argc, char *argv[], t_frac *frac)
 {
 	extra_param_check(argc, 4);
-	frac->frac_type = FRAC_JULIA;
+	frac->type = FRAC_JULIA;
 }
 
 static void	args_handle_burningship(int argc, char *argv[], t_frac *frac)
 {
 	extra_param_check(argc, 2);
-	frac->frac_type = FRAC_BURN;
+	frac->type = FRAC_BURN;
 }
 
 void	parse_args(int argc, char *argv[], t_frac *frac)

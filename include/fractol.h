@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:31 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/11 07:07:13 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/11 07:43:08 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_frac
 	double			y_step;
 	t_complex		c;
 	int				max_iter;
-	int				frac_type;
+	int				type;
 }	t_frac;
 
 /* TODO: Remove me */
