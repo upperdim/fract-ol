@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:31 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/11 07:43:08 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/12 04:30:25 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
+/* File descriptors */
 # define FD_STDERR 2
 
 # define MANDEL_DEFAULT_X_START -2.0
@@ -27,6 +28,12 @@
 # define MANDEL_DEFAULT_Y_START 1.0
 # define MANDEL_DEFAULT_Y_END -1.0
 
+# define JULIA_DEFAULT_X_START -2.0
+# define JULIA_DEFAULT_X_END 2.0
+# define JULIA_DEFAULT_Y_START 2.0
+# define JULIA_DEFAULT_Y_END -2.0
+
+/* Fractal types */
 # define FRAC_MANDEL 101
 # define FRAC_JULIA 102
 # define FRAC_BURN 103
@@ -60,16 +67,22 @@ int32_t	example(void);
 /* Fractals */
 void	mandelbrot_init(t_frac *frac);
 void	mandelbrot_draw(void *param);
+void	julia_init(t_frac *frac);
+void	julia_draw(void *param);
 
 /* Graphics */
 int32_t	color(int32_t r, int32_t g, int32_t b, int32_t a);
+int32_t	mandel_color(int iter, t_frac *frac);
 
 /* Utility */
 void	exit_error(t_frac *frac, const char *err_msg);
 void	parse_args(int argc, char *argv[], t_frac *frac);
 void	print_usage(void);
+int		mapi(int val, int src_min, int src_max, int dest_min, int dest_max);
+double	mapf(double val, double src_min, double src_max, double dest_min, double dest_max);
 
 /* Complex numbers */
+void	complex_zero(t_complex *c);
 void	complex_mult(t_complex a, t_complex b, t_complex *result);
 void	complex_add(t_complex a, t_complex b, t_complex *result);
 

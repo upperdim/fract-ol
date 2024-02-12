@@ -6,7 +6,7 @@
 #    By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 12:09:12 by tunsal            #+#    #+#              #
-#    Updated: 2024/02/11 07:17:06 by tunsal           ###   ########.fr        #
+#    Updated: 2024/02/12 04:22:10 by tunsal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,16 +20,16 @@ SRCS_DIR		= src/
 SRCS			= $(SRCS_DIR)fractol.c $(SRCS_DIR)example.c
 
 UTILS_DIR		= $(SRCS_DIR)util/
-UTILS_SRCS		= $(UTILS_DIR)exit_error.c $(UTILS_DIR)print_usage.c $(UTILS_DIR)parse_args.c
+UTILS_SRCS		= $(UTILS_DIR)exit_error.c $(UTILS_DIR)print_usage.c $(UTILS_DIR)parse_args.c $(UTILS_DIR)map.c
 
 GFX_DIR			= $(SRCS_DIR)gfx/
-GFX_SRCS		= $(GFX_DIR)color.c
+GFX_SRCS		= $(GFX_DIR)color.c $(GFX_DIR)mandel_color.c
 
 COMPLEX_DIR		= $(SRCS_DIR)complex/
-COMPLEX_SRCS	= $(COMPLEX_DIR)complex_mult.c $(COMPLEX_DIR)complex_add.c
+COMPLEX_SRCS	= $(COMPLEX_DIR)complex_mult.c $(COMPLEX_DIR)complex_add.c $(COMPLEX_DIR)complex_zero.c
 
 FRACTALS_DIR	= $(SRCS_DIR)fractals/
-FRACTALS_SRCS	= $(FRACTALS_DIR)mandelbrot.c
+FRACTALS_SRCS	= $(FRACTALS_DIR)mandelbrot.c $(FRACTALS_DIR)julia.c
 
 ALL_SRCS		= $(SRCS) $(UTILS_SRCS) $(GFX_SRCS) $(COMPLEX_SRCS) $(FRACTALS_SRCS)
 

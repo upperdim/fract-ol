@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 05:59:48 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/11 06:39:29 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/12 07:08:55 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static int	is_in_set(t_frac *frac)
 	t_complex	z;
 	int			i;
 
-	z.real = 0;
-	z.imag = 0;
+	complex_zero(&z);
 	i = 0;
 	while (i < frac->max_iter)
 	{
@@ -53,9 +52,9 @@ void	mandelbrot_draw(void *param)
 			frac->c.real = frac->x_start + (x * frac->x_step);
 			frac->c.imag = frac->y_start + (y * frac->y_step);
 			if (is_in_set(frac) >= frac->max_iter)
-				col = color(0xFF, 0xFF, 0xFF, 0xFF);
-			else
 				col = color(0x00, 0x00, 0x00, 0xFF);
+			else
+				col = mandel_color(is_in_set(frac), frac);
 			mlx_put_pixel(frac->img, x, y, col);
 			++y;
 		}
@@ -94,7 +93,7 @@ void	mandelbrot_init(t_frac *frac)
 	double	default_min_x_range;
 	double	default_min_y_range;
 
-	frac->max_iter = 1000;
+	frac->max_iter = 100;
 	default_min_x_range = MANDEL_DEFAULT_X_END - MANDEL_DEFAULT_X_START;
 	default_min_y_range = -(MANDEL_DEFAULT_Y_END - MANDEL_DEFAULT_Y_START);
 	mandelbrot_adjust_coords(frac, (double) frac->scr_w / frac->scr_h, \
