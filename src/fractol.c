@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:29 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/11 07:47:17 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/12 01:33:57 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@
 void	init(int argc, char *argv[], t_frac *frac)
 {
 	parse_args(argc, argv, frac);
-	frac->scr_w = 1280;
-	frac->scr_h = 720;
+	frac->scr_w = 1000;
+	frac->scr_h = 1000;
 	frac->window = mlx_init(frac->scr_w, frac->scr_h, "fract-ol", true);
 	if (frac->window == NULL)
 		exit_error(frac, mlx_strerror(mlx_errno)); // TODO: check if ure able to print msgs upon error exit
@@ -75,7 +75,8 @@ void	fractal_switch(t_frac *frac)
 	}
 	else if (frac->type == FRAC_JULIA)
 	{
-
+		julia_init(frac);
+		mlx_loop_hook(frac->window, julia_draw, frac);
 	}
 	else if (frac->type == FRAC_BURN)
 	{
