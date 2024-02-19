@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 07:48:47 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/16 15:36:34 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/19 15:08:48 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	julia_draw(void *param)
 	t_complex		z_initial;
 
 	frac = (t_frac *) param;
+	frac->x_step = (frac->x_end - frac->x_start) / frac->scr_w;
+	frac->y_step = (frac->y_end - frac->y_start) / frac->scr_h;
 	x = 0;
 	while (x < frac->scr_w)
 	{

@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 05:59:48 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/17 15:01:50 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/19 15:07:11 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	mandelbrot_draw(void *param)
 	int				col;
 
 	frac = (t_frac *) param;
+	frac->x_step = (frac->x_end - frac->x_start) / frac->scr_w;
+	frac->y_step = (frac->y_end - frac->y_start) / frac->scr_h;
 	x = 0;
 	while (x < frac->scr_w)
 	{
