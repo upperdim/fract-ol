@@ -6,7 +6,7 @@
 #    By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 12:09:12 by tunsal            #+#    #+#              #
-#    Updated: 2024/02/17 18:14:37 by tunsal           ###   ########.fr        #
+#    Updated: 2024/02/19 19:42:18 by tunsal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,9 @@ FRACTALS_DIR	= $(SRCS_DIR)fractals/
 FRACTALS_SRCS	= $(FRACTALS_DIR)mandelbrot.c $(FRACTALS_DIR)julia.c $(FRACTALS_DIR)frac_color.c $(FRACTALS_DIR)frac_draw.c $(FRACTALS_DIR)frac_init.c $(FRACTALS_DIR)zoom.c $(FRACTALS_DIR)move.c
 
 UTILS_DIR		= $(SRCS_DIR)util/
-UTILS_SRCS		= $(UTILS_DIR)exit_error.c $(UTILS_DIR)print_usage.c $(UTILS_DIR)parse_args.c $(UTILS_DIR)map.c $(UTILS_DIR)color.c
+UTILS_SRCS		= $(UTILS_DIR)exit_error.c $(UTILS_DIR)print_usage.c $(UTILS_DIR)parse_args.c $(UTILS_DIR)map.c $(UTILS_DIR)color.c $(UTILS_DIR)handler_mouse.c $(UTILS_DIR)handler_keyboard.c
 
-CONTROLS_DIR	= $(SRCS_DIR)controls/
-CONTROLS_SRCS	= $(CONTROLS_DIR)handler_mouse.c $(CONTROLS_DIR)handler_keyboard.c
-
-ALL_SRCS		= $(SRCS) $(UTILS_SRCS) $(COMPLEX_SRCS) $(FRACTALS_SRCS) $(CONTROLS_SRCS)
+ALL_SRCS		= $(SRCS) $(UTILS_SRCS) $(COMPLEX_SRCS) $(FRACTALS_SRCS)
 
 # Compilation
 OBJS			= lib/MLX42/build/libmlx42.a lib/ft_printf/libftprintf.a ${ALL_SRCS:.c=.o}
