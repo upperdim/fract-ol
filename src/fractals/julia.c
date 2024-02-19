@@ -6,29 +6,29 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 07:48:47 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/12 07:08:51 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/16 15:36:34 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fractol.h"
 
-static int	is_in_julia_set(t_frac *frac, t_complex z)
+static t_iter_escape	is_in_julia_set(t_frac *frac, t_complex z)
 {
-	int			i;
+	int				i;
+	t_iter_escape	result;
 
 	i = 0;
 	while (i < frac->max_iter)
 	{
-		if ((z.real * z.real + z.imag * z.imag) > 4.0)
-		{
-			return (0);
-		}
 		complex_mult(z, z, &z);
 		complex_add(z, frac->c, &z);
-		
+		if ((z.real * z.real + z.imag * z.imag) > 4.0)
+			break;
 		++i;
 	}
-	return (1);
+	result.abs_z = z.real * z.real + z.imag * z.imag;
+	result.iter = i;
+	return (result);
 }
 
 // printf("x_start = %lf, x_end = %lf, y_start = %lf, y_end = %lf\n", 
@@ -50,10 +50,7 @@ void	julia_draw(void *param)
 		{
 			z_initial.real = frac->x_start + (x * frac->x_step);
 			z_initial.imag = frac->y_start + (y * frac->y_step);
-			if (is_in_julia_set(frac, z_initial))
-				col = color(0xFF, 0xFF, 0xFF, 0xFF);
-			else
-				col = color(0x00, 0x00, 0x00, 0xFF);
+			col = frac_color(is_in_julia_set(frac, z_initial), frac);
 			mlx_put_pixel(frac->img, x, y, col);
 			++y;
 		}
@@ -79,6 +76,15 @@ void	julia_init(t_frac *frac)
 	frac->y_step = (frac->y_end -frac->y_start) / frac->scr_h;
 
 	frac->max_iter = 100;
-	frac->c.real = -0.7;
-	frac->c.imag = 0.27015;
+	// frac->c.real = -0.7;
+	// frac->c.imag = 0.27015;
+
+	// frac->c.real = -0.54;
+	// frac->c.imag = 0.54;
+
+	// frac->c.real = 0;
+	// frac->c.imag = 0.8;
+
+	frac->c.real = -0.835;
+	frac->c.imag = -0.321;
 }

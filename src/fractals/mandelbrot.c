@@ -6,16 +6,17 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 05:59:48 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/12 07:08:55 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/17 15:01:50 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fractol.h"
 
-static int	is_in_set(t_frac *frac)
+static t_iter_escape	is_in_set(t_frac *frac)
 {
-	t_complex	z;
-	int			i;
+	t_complex		z;
+	int				i;
+	t_iter_escape	result;
 
 	complex_zero(&z);
 	i = 0;
@@ -23,14 +24,13 @@ static int	is_in_set(t_frac *frac)
 	{
 		complex_mult(z, z, &z);
 		complex_add(z, frac->c, &z);
-		if (z.real < frac->x_start || z.real > frac->x_end
-			|| z.imag < frac->y_end || z.imag > frac->y_start)
-		{
-			return (i);
-		}
+		if ((z.real * z.real + z.imag * z.imag) > 4.0)
+			break;
 		++i;
 	}
-	return (frac->max_iter);
+	result.abs_z = z.real * z.real + z.imag * z.imag;
+	result.iter = i;
+	return (result);
 }
 
 // printf("x_start = %lf, x_end = %lf, y_start = %lf, y_end = %lf\n", 
@@ -51,10 +51,7 @@ void	mandelbrot_draw(void *param)
 		{
 			frac->c.real = frac->x_start + (x * frac->x_step);
 			frac->c.imag = frac->y_start + (y * frac->y_step);
-			if (is_in_set(frac) >= frac->max_iter)
-				col = color(0x00, 0x00, 0x00, 0xFF);
-			else
-				col = mandel_color(is_in_set(frac), frac);
+			col = frac_color(is_in_set(frac), frac);
 			mlx_put_pixel(frac->img, x, y, col);
 			++y;
 		}
