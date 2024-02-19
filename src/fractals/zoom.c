@@ -6,12 +6,25 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:54:29 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/19 15:10:07 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/19 19:38:54 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fractol.h"
 
+/*
+	printf("---------\n");
+	printf("zoom-factor = %lf\n", zoom_factor);
+	printf("mouse y = %d\n", mouse_y);
+	printf("y_range = %lf\n", y_range);
+	printf("h = %u\n", frac->scr_h);
+	printf("yl = %lf\n", yl);
+	printf("mfy = %lf\n", mfy);
+	printf("new_x_range = %lf\n", new_y_range);
+	printf("ys' = %lf\n", frac->y_start);
+	printf("ye' = %lf\n", frac->y_end);
+	printf("---------\n");
+*/
 static void	update_y(t_frac *frac, double zoom_factor, int mouse_y)
 {
 	double	yl;
@@ -20,7 +33,7 @@ static void	update_y(t_frac *frac, double zoom_factor, int mouse_y)
 	double	new_y_range;
 
 	y_range = frac->y_end - frac->y_start;
-	yl = (y_range * mouse_y) / frac->scr_w;
+	yl = (y_range * mouse_y) / frac->scr_h;
 	mfy = frac->y_start + yl;
 	new_y_range = y_range * (1 / zoom_factor);
 	frac->y_start = mfy - (new_y_range / 2);

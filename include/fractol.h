@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:31 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/19 14:01:59 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/19 19:39:21 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define JULIA_DEFAULT_Y_START 2.0
 # define JULIA_DEFAULT_Y_END -2.0
 
-# define DEFAULT_ZOOM_FACTOR 1.618
+# define DEFAULT_ZOOM_FACTOR 2
 /* (delta_x / x_range) */
 # define DEFAULT_MOVE_FACTOR 0.07
 
