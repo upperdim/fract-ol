@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 07:48:47 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/19 15:08:48 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/20 23:24:23 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,4 @@ void	julia_init(t_frac *frac)
 	frac->y_step = (frac->y_end -frac->y_start) / frac->scr_h;
 
 	frac->max_iter = 100;
-	// frac->c.real = -0.7;
-	// frac->c.imag = 0.27015;
-
-	// frac->c.real = -0.54;
-	// frac->c.imag = 0.54;
-
-	// frac->c.real = 0;
-	// frac->c.imag = 0.8;
-
-	frac->c.real = -0.835;
-	frac->c.imag = -0.321;
 }

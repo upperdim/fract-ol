@@ -5,18 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 14:24:13 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/20 14:29:05 by tunsal           ###   ########.fr       */
+/*   Created: 2023/12/19 16:31:02 by tunsal            #+#    #+#             */
+/*   Updated: 2024/02/19 21:01:39 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fractol.h"
 
-void	exit_error(char *err_msg, int exit_code, int print_usage_too)
+void	exit_error_mlx(t_frac *frac, const char *err_msg)
 {
+	if (frac->window != NULL)
+	{
+		mlx_close_window(frac->window);
+	}
 	if (err_msg != NULL)
-		ft_printf("%s\n", err_msg);
-	if (print_usage_too)
-		print_usage();
-	exit(exit_code);
+	{
+		ft_putstr_fd((char *) err_msg, FD_STDERR);
+		ft_putchar_fd('\n', FD_STDERR);
+	}
+	exit(EXIT_FAILURE);
 }

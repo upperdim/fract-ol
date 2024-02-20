@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:31 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/19 19:39:21 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/20 23:31:44 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <math.h>
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
+
+# define TRUE 1
+# define FALSE 0
 
 /* File descriptors */
 # define FD_STDERR 2
@@ -101,8 +104,11 @@ int32_t	color(int32_t r, int32_t g, int32_t b, int32_t a);
 int32_t	frac_color(t_iter_escape result, t_frac *frac);
 
 /* Utility */
-void	exit_error(t_frac *frac, const char *err_msg);
+void	exit_error(char *err_msg, int exit_code, int print_usage_too);
+void	exit_error_mlx(t_frac *frac, const char *err_msg);
 void	parse_args(int argc, char *argv[], t_frac *frac);
+double	parse_double(char *s);
+char	**ft_split_e(char const *str, char separator);
 void	print_usage(void);
 int		mapi(int val, int src_min, int src_max, int dest_min, int dest_max);
 double	mapf(double val, double src_min, double src_max, double dest_min, double dest_max);
