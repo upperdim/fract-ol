@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:31 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/20 23:31:44 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/20 23:36:42 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	parse_args(int argc, char *argv[], t_frac *frac);
 double	parse_double(char *s);
 char	**ft_split_e(char const *str, char separator);
 void	print_usage(void);
+int		str_is_numeric(char *s);
 int		mapi(int val, int src_min, int src_max, int dest_min, int dest_max);
 double	mapf(double val, double src_min, double src_max, double dest_min, double dest_max);
 

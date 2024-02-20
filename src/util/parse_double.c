@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:45:14 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/20 23:20:29 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/20 23:44:05 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,20 @@ double	parse_double(char *s)
 	if (ft_strlen(s) == 0)
 		exit_error("Error: Invalid floating number.", EXIT_SUCCESS, TRUE);
 	num_parts = ft_split_e(s, '.');
-	if (check_string_arr_len(num_parts) > 2)
+	// printf("num_parts[0] = %s\n", num_parts[0]);
+	// printf("num_parts[1] = %s\n", num_parts[1]);
+	if (check_string_arr_len(num_parts) > 2) {
+		// printf("1\n");
 		exit_error("Error: Invalid floating number.", EXIT_SUCCESS, TRUE);
+	}
+	if (!str_is_numeric(num_parts[0]) || !str_is_numeric(num_parts[1])) {
+		// printf("2\n");
+		exit_error("Error: Invalid floating number.", EXIT_SUCCESS, TRUE);
+	}
+	if (!ft_isdigit(num_parts[1][0])) {
+		// printf("3\n");
+		exit_error("Error: Invalid floating number.", EXIT_SUCCESS, TRUE);
+	}
 	result = (double) ft_atoi(num_parts[0]);
 	if (num_parts[1] == NULL)
 		return (result);
