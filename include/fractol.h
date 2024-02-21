@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:31 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/20 23:36:42 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/21 14:28:36 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 /* File descriptors */
 # define FD_STDERR 2
 
-# define DEFAULT_SCREEN_WIDTH 1000
-# define DEFAULT_SCREEN_HEIGHT 1000
+# define DEFAULT_SCREEN_WIDTH 1280
+# define DEFAULT_SCREEN_HEIGHT 720
 
 /* Fractal space coordinates */
 # define MANDEL_DEFAULT_X_START -2.0
@@ -37,8 +37,8 @@
 
 # define JULIA_DEFAULT_X_START -2.0
 # define JULIA_DEFAULT_X_END 2.0
-# define JULIA_DEFAULT_Y_START 2.0
-# define JULIA_DEFAULT_Y_END -2.0
+# define JULIA_DEFAULT_Y_START 1.0
+# define JULIA_DEFAULT_Y_END -1.0
 
 # define DEFAULT_ZOOM_FACTOR 2
 /* (delta_x / x_range) */

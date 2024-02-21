@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 07:48:47 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/20 23:24:23 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/21 14:27:29 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,53 @@ void	julia_draw(void *param)
 	}
 }
 
-// static void	julia_adjust_coords(t_frac *frac, double aspect_ratio, \
-// double default_min_x_range, double default_min_y_range)
-// {
-// 	// TODO: later
-// }
+static void	julia_adjust_coords(t_frac *frac, double aspect_ratio, \
+double default_min_x_range, double default_min_y_range)
+{
+	double	new_x_range;
+	double	new_y_range;
+	double	x_shift_start_multiplier;
+	double	x_shift_end_multiplier;
+
+	if (aspect_ratio > (default_min_x_range / default_min_y_range))
+	{
+		new_y_range = default_min_y_range;
+		new_x_range = aspect_ratio * new_y_range;
+	}
+	else
+	{
+		new_x_range = default_min_x_range;
+		new_y_range = new_x_range / aspect_ratio;
+	}
+	x_shift_start_multiplier = JULIA_DEFAULT_X_START / default_min_x_range;
+	x_shift_end_multiplier = JULIA_DEFAULT_X_END / default_min_x_range;
+	frac->x_start = new_x_range * x_shift_start_multiplier;
+	frac->x_end = new_x_range * x_shift_end_multiplier;
+	frac->y_start = new_y_range / 2;
+	frac->y_end = -new_y_range / 2;
+}
 
 void	julia_init(t_frac *frac)
 {
-	frac->x_start = JULIA_DEFAULT_X_START;
-	frac->x_end = JULIA_DEFAULT_X_END;
-
-	frac->y_start = JULIA_DEFAULT_Y_START;
-	frac->y_end = JULIA_DEFAULT_Y_END;
-	
-	frac->x_step = (frac->x_end - frac->x_start) / frac->scr_w;
-	frac->y_step = (frac->y_end -frac->y_start) / frac->scr_h;
+	double	default_min_x_range;
+	double	default_min_y_range;
 
 	frac->max_iter = 100;
+	default_min_x_range = JULIA_DEFAULT_X_END - JULIA_DEFAULT_X_START;
+	default_min_y_range = -(JULIA_DEFAULT_Y_END - JULIA_DEFAULT_Y_START);
+	julia_adjust_coords(frac, (double) frac->scr_w / frac->scr_h, \
+	default_min_x_range, default_min_y_range);
+	frac->x_step = (frac->x_end - frac->x_start) / frac->scr_w;
+	frac->y_step = (frac->y_end - frac->y_start) / frac->scr_h;
+
+	// frac->x_start = JULIA_DEFAULT_X_START;
+	// frac->x_end = JULIA_DEFAULT_X_END;
+
+	// frac->y_start = JULIA_DEFAULT_Y_START;
+	// frac->y_end = JULIA_DEFAULT_Y_END;
+	
+	// frac->x_step = (frac->x_end - frac->x_start) / frac->scr_w;
+	// frac->y_step = (frac->y_end -frac->y_start) / frac->scr_h;
+
+	// frac->max_iter = 100;
 }
