@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frac_draw.c                                        :+:      :+:    :+:   */
+/*   complex_add_r.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/17 14:02:00 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/21 15:01:52 by tunsal           ###   ########.fr       */
+/*   Created: 2024/02/21 17:31:18 by tunsal            #+#    #+#             */
+/*   Updated: 2024/03/02 20:40:59 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fractol.h"
 
-void	frac_draw(t_frac *frac)
+/* Add a real number to a complex number `c`. */
+t_complex	complex_add_r(t_complex c, double r)
 {
-	mlx_delete_image(frac->window, frac->img);
-	frac->img = mlx_new_image(frac->window, frac->scr_w, frac->scr_h);
-	mlx_image_to_window(frac->window, frac->img, 0, 0);
-	if (frac->type == FRAC_MANDEL)
-	{
-		mandelbrot_draw(frac);
-	}
-	else if (frac->type == FRAC_JULIA)
-	{
-		julia_draw(frac);
-	}
-	else if (frac->type == FRAC_COLLATZ)
-	{
-		collatz_draw(frac);
-	}
+	t_complex	result;
+
+	result.real = c.real + r;
+	result.imag = c.imag;
+	return (result);
 }

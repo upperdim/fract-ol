@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frac_draw.c                                        :+:      :+:    :+:   */
+/*   complex_subt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/17 14:02:00 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/21 15:01:52 by tunsal           ###   ########.fr       */
+/*   Created: 2024/02/21 16:55:17 by tunsal            #+#    #+#             */
+/*   Updated: 2024/02/21 17:05:01 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fractol.h"
 
-void	frac_draw(t_frac *frac)
+t_complex	complex_subt(t_complex a, t_complex b)
 {
-	mlx_delete_image(frac->window, frac->img);
-	frac->img = mlx_new_image(frac->window, frac->scr_w, frac->scr_h);
-	mlx_image_to_window(frac->window, frac->img, 0, 0);
-	if (frac->type == FRAC_MANDEL)
-	{
-		mandelbrot_draw(frac);
-	}
-	else if (frac->type == FRAC_JULIA)
-	{
-		julia_draw(frac);
-	}
-	else if (frac->type == FRAC_COLLATZ)
-	{
-		collatz_draw(frac);
-	}
+	t_complex	result;
+
+	result.real = a.real - b.real;
+	result.imag = a.imag - b.imag;
+	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 06:44:26 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/20 23:24:17 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/21 15:01:10 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	args_handle_julia(int argc, char *argv[], t_frac *frac)
 static void	args_handle_burningship(int argc, char *argv[], t_frac *frac)
 {
 	extra_param_check(argc, 2);
-	frac->type = FRAC_BURN;
+	frac->type = FRAC_COLLATZ;
 }
 
 void	parse_args(int argc, char *argv[], t_frac *frac)
@@ -56,7 +56,7 @@ void	parse_args(int argc, char *argv[], t_frac *frac)
 		args_handle_mandelbrot(argc, argv, frac);
 	else if (ft_strncmp(argv[1], "j", ft_strlen(argv[1])) == 0)
 		args_handle_julia(argc, argv, frac);
-	else if (ft_strncmp(argv[1], "b", ft_strlen(argv[1])) == 0)
+	else if (ft_strncmp(argv[1], "c", ft_strlen(argv[1])) == 0)
 		args_handle_burningship(argc, argv, frac);
 	else
 		exit_error("Error: invalid parameters.", EXIT_SUCCESS, TRUE);

@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 05:59:48 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/19 15:07:11 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/23 17:28:45 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static t_iter_escape	is_in_set(t_frac *frac)
 	int				i;
 	t_iter_escape	result;
 
-	complex_zero(&z);
+	z = complex_zero();
 	i = 0;
 	while (i < frac->max_iter)
 	{
-		complex_mult(z, z, &z);
-		complex_add(z, frac->c, &z);
-		if ((z.real * z.real + z.imag * z.imag) > 4.0)
+		z = complex_mult(z, z);
+		z = complex_add(z, frac->c);
+		if ((z.real * z.real + z.imag * z.imag) > MANDEL_DEFAULT_DIVERGE_DIST)
 			break;
 		++i;
 	}
@@ -92,7 +92,7 @@ void	mandelbrot_init(t_frac *frac)
 	double	default_min_x_range;
 	double	default_min_y_range;
 
-	frac->max_iter = 100;
+	frac->max_iter = MANDEL_DEFAULT_MAXITER;
 	default_min_x_range = MANDEL_DEFAULT_X_END - MANDEL_DEFAULT_X_START;
 	default_min_y_range = -(MANDEL_DEFAULT_Y_END - MANDEL_DEFAULT_Y_START);
 	mandelbrot_adjust_coords(frac, (double) frac->scr_w / frac->scr_h, \

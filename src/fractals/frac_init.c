@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:03:40 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/17 14:04:08 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/21 15:01:32 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	frac_init(t_frac *frac)
 	{
 		julia_init(frac);
 	}
-	else if (frac->type == FRAC_BURN)
+	else if (frac->type == FRAC_COLLATZ)
 	{
-
+		collatz_init(frac);
 	}
 }

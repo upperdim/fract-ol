@@ -6,14 +6,17 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 02:14:46 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/12 02:15:17 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/21 17:05:38 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fractol.h"
 
-void	complex_zero(t_complex *c)
+t_complex	complex_zero(void)
 {
-	c->real = 0;
-	c->imag = 0;
+	t_complex	c;
+
+	c.real = 0;
+	c.imag = 0;
+	return (c);
 }

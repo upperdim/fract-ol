@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 04:07:38 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/15 07:33:37 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/02/21 22:47:13 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,14 @@ int32_t	frac_color(t_iter_escape result, t_frac *frac)
 	// double mod = sqrt(result.abs_z);
 	// double smooth_iter = (double) result.iter - log2(max(1, log2(mod)));
 	// return (color(smooth_iter, smooth_iter, smooth_iter, 255));
+}
+
+int	collatz_color(t_iter_escape result, t_frac *frac)
+{
+	if (result.iter >= frac->max_iter)
+		return(color(0, 0, 0, 255));
+
+	int x = pow((double) result.iter / (double) frac->max_iter, 0.5);
+	int brightness = (int) -2650 * x * x / 21 + 6955 * x / 21 + 50;
+	return (color(brightness, brightness, brightness, 255));
 }

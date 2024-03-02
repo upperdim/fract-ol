@@ -6,50 +6,11 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:29 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/20 23:19:50 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/02 20:40:40 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
-
-// void	draw_rectangle(void *param)
-// {
-// 	t_frac *frac;
-// 	static int color_state = 0;
-// 	frac = (t_frac *) param;
-// 	for (int x = 0; x < 30; ++x) {
-// 		for (int y = 0; y < 60; ++y) {
-// 			int col = color(0xFF, 0x00, 0xFF, 0xFF);
-// 			if (color_state > 2)
-// 				color_state = 0;
-// 			if (color_state == 0)
-// 				col = color(0xFF, 0x80, 0x00, 0xFF);
-// 			else if (color_state == 1)
-// 				col = color(0x00, 0xFF, 0x00, 0xFF);
-// 			else if (color_state == 2)
-// 				col = color(0x00, 0x00, 0xFF, 0xFF);
-// 			++color_state;
-// 			mlx_put_pixel(frac->img, x, y, col);
-// 		}
-// 	}
-// }
-
-// void	move_rectangle(void *param)
-// {
-// 	t_frac *frac;
-//
-// 	frac = (t_frac *) param;
-// 	if (mlx_is_key_down(frac->window, MLX_KEY_ESCAPE))
-// 		mlx_close_window(frac->window);
-// 	if (mlx_is_key_down(frac->window, MLX_KEY_UP))
-// 		frac->img->instances[0].y -= 5;
-// 	if (mlx_is_key_down(frac->window, MLX_KEY_DOWN))
-// 		frac->img->instances[0].y += 5;
-// 	if (mlx_is_key_down(frac->window, MLX_KEY_LEFT))
-// 		frac->img->instances[0].x -= 5;
-// 	if (mlx_is_key_down(frac->window, MLX_KEY_RIGHT))
-// 		frac->img->instances[0].x += 5;
-// }
 
 void	init(int argc, char *argv[], t_frac *frac)
 {
@@ -77,8 +38,6 @@ int	main(int argc, char *argv[])
 	frac_draw(&frac);
 	mlx_scroll_hook(frac.window, &handler_mouse, &frac);
 	mlx_key_hook(frac.window, &handler_keyboard, &frac);
-	//mlx_loop_hook(frac.window, draw_rectangle, &frac);
-	//mlx_loop_hook(frac.window, move_rectangle, &frac);
 	mlx_loop(frac.window);
 	mlx_terminate(frac.window);
 	return (0);
