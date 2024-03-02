@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:54:29 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/20 14:48:53 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/02 20:39:25 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	update_y(t_frac *frac, double zoom_factor, int mouse_y)
 	double	y_range;
 	double	new_y_range;
 
-	y_range = frac->y_end - frac->y_start;
+	y_range = frac->y_start - frac->y_end;
 	yu = (y_range * mouse_y) / frac->scr_h;
 	mfy = frac->y_start - yu;
 	new_y_range = y_range * (1 / zoom_factor);
