@@ -6,7 +6,7 @@
 #    By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 12:09:12 by tunsal            #+#    #+#              #
-#    Updated: 2024/03/04 17:58:29 by tunsal           ###   ########.fr        #
+#    Updated: 2024/03/04 18:03:55 by tunsal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ OBJS			= lib/MLX42/build/libmlx42.a lib/ft_printf/libftprintf.a ${ALL_SRCS:.c=.o
 NAME			= fract-ol
 
 CC				= gcc
-CFLAGS			= -Wextra -Wall -Ofast #-Werror -Wunreachable-code # TODO: open me!
+CFLAGS			= -Wextra -Wall -Ofast -Werror -Wunreachable-code
 LIBS			= ./lib/MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 INC				= -I ./lib/MLX42/include -I ./lib/ft_printf
 
