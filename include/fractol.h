@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:31 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/04 18:15:05 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/04 18:51:14 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,33 @@
 # define FD_STDERR 2
 
 /* Screen resolution */
-# define DEFAULT_SCREEN_WIDTH 1280
-# define DEFAULT_SCREEN_HEIGHT 720
+# define SCREEN_WIDTH 1280
+# define SCREEN_HEIGHT 720
 
 /* Fractal space coordinates */
-# define MANDEL_DEFAULT_X_START -2.0
-# define MANDEL_DEFAULT_X_END 0.8
-# define MANDEL_DEFAULT_Y_START 1.0
-# define MANDEL_DEFAULT_Y_END -1.0
+# define MANDEL_X_START -2.0
+# define MANDEL_X_END 0.8
+# define MANDEL_Y_START 1.0
+# define MANDEL_Y_END -1.0
 
-# define JULIA_DEFAULT_X_START -2.0
-# define JULIA_DEFAULT_X_END 2.0
-# define JULIA_DEFAULT_Y_START 1.0
-# define JULIA_DEFAULT_Y_END -1.0
+# define JULIA_X_START -2.0
+# define JULIA_X_END 2.0
+# define JULIA_Y_START 1.0
+# define JULIA_Y_END -1.0
 
-# define COLLATZ_DEFAULT_X_START -5.0
-# define COLLATZ_DEFAULT_X_END 5.0
-# define COLLATZ_DEFAULT_Y_START 3.0
-# define COLLATZ_DEFAULT_Y_END -3.0
+# define COLLATZ_X_START -5.0
+# define COLLATZ_X_END 5.0
+# define COLLATZ_Y_START 3.0
+# define COLLATZ_Y_END -3.0
 
 /* Iteration */
-# define JULIA_DEFAULT_MAXITER 235
-# define MANDEL_DEFAULT_MAXITER 235
-# define COLLATZ_DEFAULT_MAXITER 235
+# define JULIA_MAXITER 235
+# define MANDEL_MAXITER 235
+# define COLLATZ_MAXITER 235
 
-# define JULIA_DEFAULT_DIVERGE_DIST 4.0
-# define MANDEL_DEFAULT_DIVERGE_DIST 4.0
-# define COLLATZ_DEFAULT_DIVERGE_DIST 8000000000.0
+# define JULIA_DIVERGE_DIST 4.0
+# define MANDEL_DIVERGE_DIST 4.0
+# define COLLATZ_DIVERGE_DIST 8000000000.0
 
 /* Color values */
 # define JULIA_COLOR_FACTOR 2500
@@ -62,9 +62,9 @@
 # define COLLATZ_COLOR_FACTOR 2500
 
 /* Zoom & Move */
-# define DEFAULT_ZOOM_FACTOR 2
+# define ZOOM_FACTOR 2
 /* (delta_x / x_range) */
-# define DEFAULT_MOVE_FACTOR 0.07
+# define MOVE_FACTOR 0.07
 
 /* Direction types */
 # define UP 201
