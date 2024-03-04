@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:29 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/02 20:40:40 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/04 18:00:41 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init(int argc, char *argv[], t_frac *frac)
 	frac->scr_h = DEFAULT_SCREEN_HEIGHT;
 	frac->window = mlx_init(frac->scr_w, frac->scr_h, "fract-ol", false);
 	if (frac->window == NULL)
-		exit_error_mlx(frac, mlx_strerror(mlx_errno)); // TODO: check if ure able to print msgs upon error exit
+		exit_error_mlx(frac, mlx_strerror(mlx_errno));
 	frac->img = mlx_new_image(frac->window, frac->scr_w, frac->scr_h);
 	if (frac->img == NULL)
 		exit_error_mlx(frac, mlx_strerror(mlx_errno));

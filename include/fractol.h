@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:31 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/02 20:39:56 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/04 17:51:07 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define FD_STDERR 2
 
 /* Screen resolution */
-# define DEFAULT_SCREEN_WIDTH 1000
-# define DEFAULT_SCREEN_HEIGHT 1000
+# define DEFAULT_SCREEN_WIDTH 1280
+# define DEFAULT_SCREEN_HEIGHT 720
 
 /* Fractal space coordinates */
 # define MANDEL_DEFAULT_X_START -2.0
@@ -48,13 +48,18 @@
 # define COLLATZ_DEFAULT_Y_END -3.0
 
 /* Iteration */
-# define JULIA_DEFAULT_MAXITER 100
+# define JULIA_DEFAULT_MAXITER 500
 # define MANDEL_DEFAULT_MAXITER 100
-# define COLLATZ_DEFAULT_MAXITER 1000
+# define COLLATZ_DEFAULT_MAXITER 100
 
 # define JULIA_DEFAULT_DIVERGE_DIST 4.0
 # define MANDEL_DEFAULT_DIVERGE_DIST 4.0
 # define COLLATZ_DEFAULT_DIVERGE_DIST 8000000000.0
+
+/* Color values */
+# define JULIA_COLOR_FACTOR 2500
+# define MANDEL_COLOR_FACTOR 255
+# define COLLATZ_COLOR_FACTOR 2500
 
 /* Zoom & Move */
 # define DEFAULT_ZOOM_FACTOR 2
@@ -71,6 +76,11 @@
 # define FRAC_MANDEL 101
 # define FRAC_JULIA 102
 # define FRAC_COLLATZ 103
+
+/* Color states */
+# define COLOR_STATE_A 501
+# define COLOR_STATE_B 502
+# define COLOR_STATE_C 503
 
 typedef struct s_complex
 {
@@ -95,6 +105,7 @@ typedef struct s_frac
 	int				type;
 	double			zoom_factor;
 	double			move_factor;
+	int				color_state;
 }	t_frac;
 
 typedef struct s_iter_escape
@@ -102,6 +113,19 @@ typedef struct s_iter_escape
 	double	abs_z;
 	int		iter;
 }	t_iter_escape;
+
+typedef struct s_hsb_colorspace_vars
+{
+	float	h;
+	float	s;
+	float	b;
+	float	chroma;
+	float	x;
+	float	r_tmp;
+	float	g_tmp;
+	float	b_tmp;
+	float	m;
+}	t_hsb_colorspace_vars;
 
 /* Fractals */
 void		frac_init(t_frac *frac);
@@ -117,8 +141,9 @@ void		move(t_frac *frac, int direction);
 
 /* Graphics */
 int32_t		color(int32_t r, int32_t g, int32_t b, int32_t a);
+int32_t		color_hsb(int hue, int sat, int bri);
 int32_t		frac_color(t_iter_escape result, t_frac *frac);
-int32_t		collatz_color(t_iter_escape result, t_frac *frac);
+void		change_color_state(t_frac *frac);
 
 /* Utility */
 void		exit_error(char *err_msg, int exit_code, int print_usage_too);
@@ -128,8 +153,6 @@ double		parse_double(char *s);
 char		**ft_split_e(char const *str, char separator);
 void		print_usage(void);
 int			str_is_numeric(char *s);
-int			mapi(int val, int src_min, int src_max, int dest_min, int dest_max);
-double		mapf(double val, double src_min, double src_max, double dest_min, double dest_max);
 
 /* Controls */
 void		handler_mouse(double xdelta, double ydelta, void *param);

@@ -6,7 +6,7 @@
 #    By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 12:09:12 by tunsal            #+#    #+#              #
-#    Updated: 2024/03/02 20:39:50 by tunsal           ###   ########.fr        #
+#    Updated: 2024/03/04 17:58:29 by tunsal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,8 @@ UTILS_SRCS		= $(UTILS_DIR)exit_error.c \
 					$(UTILS_DIR)parse_double.c \
 					$(UTILS_DIR)str_is_numeric.c \
 					$(UTILS_DIR)ft_split_e.c \
-					$(UTILS_DIR)map.c \
 					$(UTILS_DIR)color.c \
+					$(UTILS_DIR)color_hsb.c \
 					$(UTILS_DIR)handler_mouse.c \
 					$(UTILS_DIR)handler_keyboard.c
 

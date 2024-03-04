@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 07:48:47 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/02 20:41:29 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/04 17:54:12 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ static t_iter_escape	is_in_collatz_set(t_frac *frac, t_complex c)
 	i = 0;
 	while (i < frac->max_iter)
 	{
-		c = complex_mult_s(complex_subt(complex_add_r(complex_mult_s(c, 7), 2), complex_mult(complex_add_r(complex_mult_s(c, 5), 2), complex_cos(complex_mult_s(c, PI)))), 0.25);
+		c = complex_mult_s(complex_subt(complex_add_r(complex_mult_s(c, 7), 2) \
+		, complex_mult(complex_add_r(complex_mult_s(c, 5), 2) \
+		, complex_cos(complex_mult_s(c, PI)))), 0.25);
 		if ((c.real * c.real + c.imag * c.imag) > COLLATZ_DEFAULT_DIVERGE_DIST)
-			break;
+			break ;
 		++i;
 	}
 	result.abs_z = c.real * c.real + c.imag * c.imag;
@@ -50,7 +52,7 @@ void	collatz_draw(void *param)
 		{
 			frac->c.real = frac->x_start + (x * frac->x_step);
 			frac->c.imag = frac->y_start + (y * frac->y_step);
-			col = collatz_color(is_in_collatz_set(frac, frac->c), frac);
+			col = frac_color(is_in_collatz_set(frac, frac->c), frac);
 			mlx_put_pixel(frac->img, x, y, col);
 			++y;
 		}

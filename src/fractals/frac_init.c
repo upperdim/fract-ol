@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:03:40 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/21 15:01:32 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/04 17:39:33 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	frac_init(t_frac *frac)
 	{
 		collatz_init(frac);
 	}
+	frac->color_state = COLOR_STATE_A;
 }

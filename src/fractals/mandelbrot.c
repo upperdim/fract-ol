@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 05:59:48 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/23 17:28:45 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/04 17:57:55 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_iter_escape	is_in_set(t_frac *frac)
 		z = complex_mult(z, z);
 		z = complex_add(z, frac->c);
 		if ((z.real * z.real + z.imag * z.imag) > MANDEL_DEFAULT_DIVERGE_DIST)
-			break;
+			break ;
 		++i;
 	}
 	result.abs_z = z.real * z.real + z.imag * z.imag;

@@ -6,57 +6,41 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 04:07:38 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/21 22:47:13 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/04 17:55:20 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fractol.h"
 
-static double max(double a, double b)
+void	change_color_state(t_frac *frac)
 {
-	if (a > b)
-		return a;
-	return b;
+	if (frac->color_state == COLOR_STATE_A)
+		frac->color_state = COLOR_STATE_B;
+	else if (frac->color_state == COLOR_STATE_B)
+		frac->color_state = COLOR_STATE_C;
+	else if (frac->color_state == COLOR_STATE_C)
+		frac->color_state = COLOR_STATE_A;
 }
 
-/* Build 32-bit (4-byte) color integer from rgba. */
 int32_t	frac_color(t_iter_escape result, t_frac *frac)
 {
+	int		factor;
+	float	hue;
+
+	if (frac->type == FRAC_MANDEL)
+		factor = MANDEL_COLOR_FACTOR;
+	else if (frac->type == FRAC_JULIA)
+		factor = JULIA_COLOR_FACTOR;
+	else if (frac->type == FRAC_COLLATZ)
+		factor = COLLATZ_COLOR_FACTOR;
 	if (result.iter >= frac->max_iter)
-		return(color(0, 0, 0, 255));
-
-	// Map [0, maxiter] to [0, 255]
-	int brightness = mapi(result.iter, 0, frac->max_iter, 0, 255);
-	return (color(brightness, brightness, brightness, 255));
-
-	// Logarithmic scaling
-	// double normalized = mapf(iter, 0, (double) frac->max_iter, 0, 0.17);
-	// normalized = sqrt(normalized);
-	// int brightness = (int) mapf(normalized, 0, 1, 0, 255);
-	// return (color(brightness, brightness, brightness, 255));
-
-	// Wikipedia
-	// int brigthness = result.iter + 1 - log(log(result.abs_z))/log(2);
-	// return (color(brigthness, brigthness, brigthness, 255));
-
-	// Wiki method compliant way of logarithmic scaling
-	// double normalized = mapf(result.iter, 0, (double) frac->max_iter, 0, 0.17);
-	// normalized = sqrt(normalized);
-	// int brightness = (int) mapf(normalized, 0, 1, 0, 255);
-	// return (color(brightness, brightness, brightness, 255));
-
-	// Youtube
-	// double mod = sqrt(result.abs_z);
-	// double smooth_iter = (double) result.iter - log2(max(1, log2(mod)));
-	// return (color(smooth_iter, smooth_iter, smooth_iter, 255));
-}
-
-int	collatz_color(t_iter_escape result, t_frac *frac)
-{
-	if (result.iter >= frac->max_iter)
-		return(color(0, 0, 0, 255));
-
-	int x = pow((double) result.iter / (double) frac->max_iter, 0.5);
-	int brightness = (int) -2650 * x * x / 21 + 6955 * x / 21 + 50;
-	return (color(brightness, brightness, brightness, 255));
+		return (color(0, 0, 0, 255));
+	hue = (int)(factor * (float) result.iter / frac->max_iter);
+	if (frac->color_state == COLOR_STATE_A)
+		hue = (int)(hue + 0) % 360;
+	if (frac->color_state == COLOR_STATE_B)
+		hue = (int)(hue + 90) % 360;
+	else if (frac->color_state == COLOR_STATE_C)
+		hue = (int)(hue + 250) % 360;
+	return (color_hsb(hue, 100, 100));
 }

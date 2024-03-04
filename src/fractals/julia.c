@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 07:48:47 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/23 17:28:38 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/04 17:57:47 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_iter_escape	is_in_julia_set(t_frac *frac, t_complex z)
 		z = complex_mult(z, z);
 		z = complex_add(z, frac->c);
 		if ((z.real * z.real + z.imag * z.imag) > JULIA_DEFAULT_DIVERGE_DIST)
-			break;
+			break ;
 		++i;
 	}
 	result.abs_z = z.real * z.real + z.imag * z.imag;
@@ -98,15 +98,4 @@ void	julia_init(t_frac *frac)
 	default_min_x_range, default_min_y_range);
 	frac->x_step = (frac->x_end - frac->x_start) / frac->scr_w;
 	frac->y_step = (frac->y_end - frac->y_start) / frac->scr_h;
-
-	// frac->x_start = JULIA_DEFAULT_X_START;
-	// frac->x_end = JULIA_DEFAULT_X_END;
-
-	// frac->y_start = JULIA_DEFAULT_Y_START;
-	// frac->y_end = JULIA_DEFAULT_Y_END;
-	
-	// frac->x_step = (frac->x_end - frac->x_start) / frac->scr_w;
-	// frac->y_step = (frac->y_end -frac->y_start) / frac->scr_h;
-
-	// frac->max_iter = 100;
 }

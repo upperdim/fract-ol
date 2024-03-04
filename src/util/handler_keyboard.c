@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:01:14 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/19 13:58:16 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/04 17:40:14 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ void	handler_keyboard(mlx_key_data_t key, void *param)
 		move(frac, LEFT);
 	else if (key.key == MLX_KEY_RIGHT && key.action == MLX_PRESS)
 		move(frac, RIGHT);
+	else if (key.key == MLX_KEY_SPACE && key.action == MLX_PRESS)
+		change_color_state(frac);
 	frac_draw(frac);
 }
