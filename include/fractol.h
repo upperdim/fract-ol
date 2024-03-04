@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:31 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/04 17:51:07 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/04 18:15:05 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@
 # define COLLATZ_DEFAULT_Y_END -3.0
 
 /* Iteration */
-# define JULIA_DEFAULT_MAXITER 500
-# define MANDEL_DEFAULT_MAXITER 100
-# define COLLATZ_DEFAULT_MAXITER 100
+# define JULIA_DEFAULT_MAXITER 235
+# define MANDEL_DEFAULT_MAXITER 235
+# define COLLATZ_DEFAULT_MAXITER 235
 
 # define JULIA_DEFAULT_DIVERGE_DIST 4.0
 # define MANDEL_DEFAULT_DIVERGE_DIST 4.0
