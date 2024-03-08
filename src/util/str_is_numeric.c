@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:35:03 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/20 23:43:50 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/08 09:34:38 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	str_is_numeric(char *s)
 
 	len = ft_strlen(s);
 	if (s == NULL)
-		return (0);
+		return (1);
 	if (len == 0)
 		return (1);
 	if (s[0] == '-' || s[0] == '+')
