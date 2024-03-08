@@ -6,7 +6,7 @@
 #    By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 12:09:12 by tunsal            #+#    #+#              #
-#    Updated: 2024/03/04 18:03:55 by tunsal           ###   ########.fr        #
+#    Updated: 2024/03/08 16:24:00 by tunsal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,10 +74,12 @@ lib/MLX42/build/libmlx42.a:
 				cmake ./lib/MLX42 -B ./lib/MLX42/build && make -C ./lib/MLX42/build -j4
 
 clean:
+				make -C ./lib/ft_printf clean
 				rm -rf $(OBJS)
 				rm -rf lib/MLX42/build
 
 fclean: clean
+				make -C ./lib/ft_printf fclean
 				rm -rf $(NAME)
 
 re: clean all
