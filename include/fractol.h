@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:31 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/04 18:51:14 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/08 08:10:18 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 
 /* Iteration */
 # define JULIA_MAXITER 235
+# define JULIA_INT_MAXITER 7
 # define MANDEL_MAXITER 235
 # define COLLATZ_MAXITER 235
 
@@ -58,6 +59,7 @@
 
 /* Color values */
 # define JULIA_COLOR_FACTOR 2500
+# define JULIA_INT_COLOR_FACTOR 100
 # define MANDEL_COLOR_FACTOR 255
 # define COLLATZ_COLOR_FACTOR 2500
 
@@ -75,7 +77,8 @@
 /* Fractal types */
 # define FRAC_MANDEL 101
 # define FRAC_JULIA 102
-# define FRAC_COLLATZ 103
+# define FRAC_JULIA_INT 103
+# define FRAC_COLLATZ 104
 
 /* Color states */
 # define COLOR_STATE_A 501
@@ -156,6 +159,7 @@ int			str_is_numeric(char *s);
 
 /* Controls */
 void		handler_mouse(double xdelta, double ydelta, void *param);
+void		handler_mouse_move(double xpos, double ypos, void *param);
 void		handler_keyboard(mlx_key_data_t key, void *param);
 
 /* Complex numbers */

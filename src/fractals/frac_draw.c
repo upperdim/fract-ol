@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:02:00 by tunsal            #+#    #+#             */
-/*   Updated: 2024/02/21 15:01:52 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/08 06:55:42 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	frac_draw(t_frac *frac)
 	{
 		mandelbrot_draw(frac);
 	}
-	else if (frac->type == FRAC_JULIA)
+	else if (frac->type == FRAC_JULIA || frac->type == FRAC_JULIA_INT)
 	{
 		julia_draw(frac);
 	}

@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:29 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/04 18:51:17 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/08 07:48:36 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,16 @@
 void	init(int argc, char *argv[], t_frac *frac)
 {
 	parse_args(argc, argv, frac);
-	frac->scr_w = SCREEN_WIDTH;
-	frac->scr_h = SCREEN_HEIGHT;
+	if (frac->type == FRAC_JULIA_INT)
+	{
+		frac->scr_w = 640;
+		frac->scr_h = 480;
+	}
+	else
+	{
+		frac->scr_w = SCREEN_WIDTH;
+		frac->scr_h = SCREEN_HEIGHT;
+	}
 	frac->window = mlx_init(frac->scr_w, frac->scr_h, "fract-ol", false);
 	if (frac->window == NULL)
 		exit_error_mlx(frac, mlx_strerror(mlx_errno));
@@ -36,7 +44,10 @@ int	main(int argc, char *argv[])
 
 	init(argc, argv, &frac);
 	frac_draw(&frac);
-	mlx_scroll_hook(frac.window, &handler_mouse, &frac);
+	if (frac.type == FRAC_JULIA_INT)
+		mlx_cursor_hook(frac.window, handler_mouse_move, &frac);
+	else
+		mlx_scroll_hook(frac.window, &handler_mouse, &frac);
 	mlx_key_hook(frac.window, &handler_keyboard, &frac);
 	mlx_loop(frac.window);
 	mlx_terminate(frac.window);

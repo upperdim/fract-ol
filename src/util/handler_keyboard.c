@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:01:14 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/04 17:40:14 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/08 07:21:13 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,18 @@ void	handler_keyboard(mlx_key_data_t key, void *param)
 		mlx_terminate(frac->window);
 		exit(EXIT_SUCCESS);
 	}
-	if (key.key == MLX_KEY_UP && key.action == MLX_PRESS)
-		move(frac, UP);
-	else if (key.key == MLX_KEY_DOWN && key.action == MLX_PRESS)
-		move(frac, DOWN);
-	else if (key.key == MLX_KEY_LEFT && key.action == MLX_PRESS)
-		move(frac, LEFT);
-	else if (key.key == MLX_KEY_RIGHT && key.action == MLX_PRESS)
-		move(frac, RIGHT);
-	else if (key.key == MLX_KEY_SPACE && key.action == MLX_PRESS)
-		change_color_state(frac);
-	frac_draw(frac);
+	if (frac->type != FRAC_JULIA_INT)
+	{
+		if (key.key == MLX_KEY_UP && key.action == MLX_PRESS)
+			move(frac, UP);
+		else if (key.key == MLX_KEY_DOWN && key.action == MLX_PRESS)
+			move(frac, DOWN);
+		else if (key.key == MLX_KEY_LEFT && key.action == MLX_PRESS)
+			move(frac, LEFT);
+		else if (key.key == MLX_KEY_RIGHT && key.action == MLX_PRESS)
+			move(frac, RIGHT);
+		else if (key.key == MLX_KEY_SPACE && key.action == MLX_PRESS)
+			change_color_state(frac);
+		frac_draw(frac);
+	}
 }

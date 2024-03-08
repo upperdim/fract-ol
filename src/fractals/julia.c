@@ -6,13 +6,13 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 07:48:47 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/04 18:51:20 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/08 07:46:23 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fractol.h"
 
-static t_iter_escape	is_in_julia_set(t_frac *frac, t_complex z)
+static t_iter_escape	is_in_julia_set(t_frac *frac, t_complex *z)
 {
 	int				i;
 	t_iter_escape	result;
@@ -20,13 +20,13 @@ static t_iter_escape	is_in_julia_set(t_frac *frac, t_complex z)
 	i = 0;
 	while (i < frac->max_iter)
 	{
-		z = complex_mult(z, z);
-		z = complex_add(z, frac->c);
-		if ((z.real * z.real + z.imag * z.imag) > JULIA_DIVERGE_DIST)
+		*z = complex_mult(*z, *z);
+		*z = complex_add(*z, frac->c);
+		if ((z->real * z->real + z->imag * z->imag) > JULIA_DIVERGE_DIST)
 			break ;
 		++i;
 	}
-	result.abs_z = z.real * z.real + z.imag * z.imag;
+	result.abs_z = z->real * z->real + z->imag * z->imag;
 	result.iter = i;
 	return (result);
 }
@@ -38,12 +38,14 @@ void	julia_draw(void *param)
 	t_frac			*frac;
 	unsigned int	x;
 	unsigned int	y;
-	int				col;
 	t_complex		z_initial;
 
 	frac = (t_frac *) param;
-	frac->x_step = (frac->x_end - frac->x_start) / frac->scr_w;
-	frac->y_step = (frac->y_end - frac->y_start) / frac->scr_h;
+	if (frac->type != FRAC_JULIA_INT)
+	{
+		frac->x_step = (frac->x_end - frac->x_start) / frac->scr_w;
+		frac->y_step = (frac->y_end - frac->y_start) / frac->scr_h;
+	}
 	x = 0;
 	while (x < frac->scr_w)
 	{
@@ -52,8 +54,8 @@ void	julia_draw(void *param)
 		{
 			z_initial.real = frac->x_start + (x * frac->x_step);
 			z_initial.imag = frac->y_start + (y * frac->y_step);
-			col = frac_color(is_in_julia_set(frac, z_initial), frac);
-			mlx_put_pixel(frac->img, x, y, col);
+			mlx_put_pixel(frac->img, x, y, frac_color(is_in_julia_set(frac, \
+			&z_initial), frac));
 			++y;
 		}
 		++x;
@@ -91,7 +93,10 @@ void	julia_init(t_frac *frac)
 	double	default_min_x_range;
 	double	default_min_y_range;
 
-	frac->max_iter = JULIA_MAXITER;
+	if (frac->type == FRAC_JULIA)
+		frac->max_iter = JULIA_MAXITER;
+	else if (frac->type == FRAC_JULIA_INT)
+		frac->max_iter = JULIA_INT_MAXITER;
 	default_min_x_range = JULIA_X_END - JULIA_X_START;
 	default_min_y_range = -(JULIA_Y_END - JULIA_Y_START);
 	julia_adjust_coords(frac, (double) frac->scr_w / frac->scr_h, \

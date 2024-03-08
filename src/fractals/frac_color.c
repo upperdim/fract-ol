@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 04:07:38 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/04 17:55:20 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/08 07:50:41 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,29 @@ void	change_color_state(t_frac *frac)
 		frac->color_state = COLOR_STATE_A;
 }
 
+// static int32_t	julia_int_color(t_iter_escape result, t_frac *frac)
+// {
+// 	int	brightness;
+
+// 	brightness = (255 * result.iter) / frac->max_iter;
+// 	return (color(brightness, brightness, brightness, 255));
+// }
+
 int32_t	frac_color(t_iter_escape result, t_frac *frac)
 {
 	int		factor;
 	float	hue;
 
-	if (frac->type == FRAC_MANDEL)
+	if (result.iter >= frac->max_iter)
+		return (color(0, 0, 0, 255));
+	if (frac->type == FRAC_JULIA_INT)
+		factor = JULIA_INT_COLOR_FACTOR;
+	else if (frac->type == FRAC_MANDEL)
 		factor = MANDEL_COLOR_FACTOR;
 	else if (frac->type == FRAC_JULIA)
 		factor = JULIA_COLOR_FACTOR;
-	else if (frac->type == FRAC_COLLATZ)
+	else
 		factor = COLLATZ_COLOR_FACTOR;
-	if (result.iter >= frac->max_iter)
-		return (color(0, 0, 0, 255));
 	hue = (int)(factor * (float) result.iter / frac->max_iter);
 	if (frac->color_state == COLOR_STATE_A)
 		hue = (int)(hue + 0) % 360;
