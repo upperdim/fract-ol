@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 06:44:26 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/08 08:08:17 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/08 09:59:57 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ static void	args_handle_julia(int argc, char *argv[], t_frac *frac)
 	{
 		frac->c.real = parse_double(argv[2]);
 		frac->c.imag = parse_double(argv[3]);
+		if (frac->c.real < -2.0 || frac->c.real > 2.0
+			|| frac->c.imag < -2.0 || frac->c.imag > 2.0)
+			exit_error("Error: Invalid floating number. Julia parameters are \
+out of range.", EXIT_SUCCESS, TRUE);
 	}
 	else
 		exit_error("Error: extra parameters detected.", EXIT_SUCCESS, TRUE);
