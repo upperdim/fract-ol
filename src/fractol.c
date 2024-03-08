@@ -6,13 +6,13 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 07:10:29 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/08 07:48:36 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/08 10:01:36 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 
-void	init(int argc, char *argv[], t_frac *frac)
+static void	init(int argc, char *argv[], t_frac *frac)
 {
 	parse_args(argc, argv, frac);
 	if (frac->type == FRAC_JULIA_INT)
