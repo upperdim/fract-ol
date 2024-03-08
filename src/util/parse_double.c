@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:45:14 by tunsal            #+#    #+#             */
-/*   Updated: 2024/03/08 09:54:58 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/03/08 16:26:29 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ double	parse_double(char *s)
 		result -= num_after_radix / pow(10, digit_count_after_radix);
 	else
 		result += num_after_radix / pow(10, digit_count_after_radix);
+	num_after_radix = 0;
+	while (num_parts[num_after_radix] != NULL)
+		free(num_parts[num_after_radix++]);
+	free(num_parts);
 	return (result);
 }
 
