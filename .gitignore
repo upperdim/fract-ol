@@ -1,9 +1,21 @@
-.DS_Store
-*.o
-fract-ol
+# Legacy gitignores
 notes.txt
-*.a
 demo.c
-a.out
 demo
+
+# Development
+.vscode/
+*.o
+
+# Windows Helpers & Outputs (Forbidden by Norm)
+*.bat
+fract-ol.exe
+
+# UNIX Outputs
+a.out
+fract-ol
+*.a
+
+# MacOS
+.DS_Store
 demo.dSYM

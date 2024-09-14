@@ -42,11 +42,6 @@ char	*ft_substr(char const *str, unsigned int sub_start_idx, size_t sub_len)
 		sub = create_empty_string();
 		return (sub);
 	}
-	else if (sub_start_idx < 0)
-	{
-		sub_len -= sub_start_idx;
-		sub_start_idx = 0;
-	}
 	max_available_len = str_len - sub_start_idx;
 	if (sub_len == SIZE_MAX)
 		sub_len -= 1;
